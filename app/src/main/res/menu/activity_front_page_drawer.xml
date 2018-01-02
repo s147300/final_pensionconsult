@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_news"
+            android:title="Nyheder" />
+        <item
+            android:id="@+id/nav_guide"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="Råd og vejledning" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="Information" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Indstillinger" />
+
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Test" />
+    </group>
+
+    <item android:title="Kontakt">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_contact"
+                android:title="Kontaktinformation" />
+
+        </menu>
+    </item>
+
+</menu>
