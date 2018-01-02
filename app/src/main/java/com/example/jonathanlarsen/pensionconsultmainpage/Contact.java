@@ -132,7 +132,7 @@ public class Contact extends Activity implements View.OnClickListener {
 
         /* Fill it with Data */
         emailIntent.setType("plain/text");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"jakobsen1608@hotmail.com"});
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"dannyjoensson@gmail.com"});
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject:" + subject);
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Comment: " + comment + "From: " + name + " Mail: " + mail);
 
