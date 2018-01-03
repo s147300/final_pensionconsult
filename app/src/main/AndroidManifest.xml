@@ -32,7 +32,6 @@
         <activity android:name=".Contact" />
         <activity android:name=".TestResult" />
         <activity android:name=".TestQuestions" />
-        <activity android:name=".trololo"></activity>
     </application>
 
 </manifest>
