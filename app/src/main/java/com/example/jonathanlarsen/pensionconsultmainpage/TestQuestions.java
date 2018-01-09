@@ -64,11 +64,25 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
 
         setQuestion();
         setChoices();
+
+        RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
+        rdgrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                next.setEnabled(true);
+            }
+        });
     }
+
+
+
 
     //skal have implementeret næste klik uden radiobuttenPressed.
     @Override
     public void onClick(View view) {
+
+
         if (view==next && i==3){ //når der bliver trykket næste ved sidste spørgsmål.
             answerCalc();
             double valuesSum = sum(); //får endelig værdi, så vi kan sende den videre.
@@ -96,8 +110,9 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         }
     }
     public void setQuestion(){
+        next.setEnabled(false);
         TextView tv = (TextView) findViewById(R.id.question);
-        tv.setText((questAnws[i][0])); //spørgsmålet er altid position 0 i hver array
+        tv.setText((questAnws[i][0])); //spørgsmålet er altid position 0 i hvert array
     }
 
     public void setChoices(){ //laver radiobuttons i radioGroup, giver hver knap ID fra 0-3 alt efter hvor mange svarmuligheder spørgsmålet har.
@@ -106,7 +121,7 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
             RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
             rdbtn = new RadioButton(this);
             rdbtn.setId(j);
-            rdbtn.setText(questAnws[i][j+1]); //sætter tekst alt efter hvor i svar-arrayet vi er.
+            rdbtn.setText(questAnws[i][j+1]);
             rdgrp.addView(rdbtn);
         }
     }
@@ -143,8 +158,7 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         }
         if (i == 3) { //spg. 4 indgår ikke i udregningsprocessen, men svaret skal muligvis bruges.
             RadioButton rdbtn = (RadioButton) rdgrp.getChildAt(checkedButt);
-            rdbtn.getText();
-            System.out.println(rdbtn.getText());
+            System.out.println(rdbtn.getText().toString());
             sum();
         }
     }
@@ -160,4 +174,5 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
             sum += d;
         return sum;
     }
+
 }

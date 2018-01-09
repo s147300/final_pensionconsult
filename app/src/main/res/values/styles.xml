@@ -17,4 +17,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="QuestionButton" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@drawable/btn_questions</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
 </resources>
