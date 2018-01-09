@@ -16,39 +16,35 @@ import java.util.List;
 public class TestQuestions extends AppCompatActivity implements View.OnClickListener { //skal ryddes op og gøres mere objekt orienteret.
     Button back, next, stopTest;
     ProgressBar bar;
-    int i = 0;
-    int answer_counter = 0;
+    int i = 0; //spørgsmåls iterator
     List<Double> values = new ArrayList<Double>();
 
     //bliver lavet til array of arrays og lagt i string res.
-    String[] questions = {
-            "Hvor vigtig tror du din pensionsopsparing bliver for din samlede økonomi, når du går på pension?",
-            "Lægger du mere vægt på muligheden for højt afkast end på sikkerhed for hvor meget, du når at spare op?",
-            "Kan du leve med, at du på et år kan miste f.eks. 20% af hele din opsparing, hvis aktierne falder drastisk?",
-            "Hvor godt kender du til handel med værdipapirer og investeringer?"
+
+
+    String[][] questAnws = new String[][]{
+            { "Hvor vigtig tror du din pensionsopsparing bliver for din samlede økonomi, når du går på pension?",
+                    "Ingen betydning",
+                    "Nogen betydning",
+                    "Forholdsvis stor betydning",
+                    "Meget stor betydning"},
+
+            {  "Lægger du mere vægt på muligheden for højt afkast end på sikkerhed for hvor meget, du når at spare op?",
+                    "Højt afkast er det vigtigste for mig, også selvom jeg løber en risiko",
+                    "Afkast er vigtigt for mig, men risikoen skal være begrænset",
+                    "Sikkerhed er vigtigst for mig, også selvom det kan betyde mindre afkast"},
+
+            { "Kan du leve med, at du på et år kan miste f.eks. 20% af hele din opsparing, hvis aktierne falder drastisk?",
+                    "Det vil jeg ikke kunne leve med",
+                    "Det hører med til at have investeringer, som er langsigtede"},
+
+            { "Hvor godt kender du til handel med værdipapirer og investeringer?",
+                    "Intet kendskab",
+                    "Lidt kendskab",
+                    "Godt kendskab",
+                    "Særdeles godt kendskab"}
     };
 
-    String[] answers = {
-            "Ingen betydning", //1
-            "Nogen betydning",
-            "Forholdsvis stor betydning",
-            "Meget stor betydning",
-
-            "Højt afkast er det vigtigste for mig, også selvom jeg løber en risiko", //2
-            "Afkast er vigtigt for mig, men risikoen skal være begrænset",
-            "Sikkerhed er vigtigst for mig, også selvom det kan betyde mindre afkast",
-
-            "Det vil jeg ikke kunne leve med", //3
-            "Det hører med til at have investeringer, som er langsigtede",
-
-            "Intet kendskab", //4
-            "Lidt kendskab",
-            "Godt kendskab",
-            "Særdeles godt kendskab"
-    };
-
-    int[] amount_of_radiobuttons = {4,3,2,4}; //antal knapper pr. spørgsmål: spg et har 4 knapper, spg 2 har 3 osv.
-                                                //kan fixes med array of arrays (size).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +72,7 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         if (view==next && i==3){ //når der bliver trykket næste ved sidste spørgsmål.
             answerCalc();
             double valuesSum = sum(); //får endelig værdi, så vi kan sende den videre.
+            System.out.println("summen er: " + valuesSum);
             Intent intent = new Intent(this, TestResult.class); //gå til TestResult-siden
             intent.putExtra("sum", valuesSum );
             startActivity(intent);
@@ -92,7 +89,6 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         else if (view==back) { //tilbage til tidligere spørgsmål
             i--;
             values.remove(i); //fjern beregnet værdi, så den kan replaces når spørgsmålet besvares igen.
-            answer_counter = answer_counter - amount_of_radiobuttons[i]-amount_of_radiobuttons[i+1]; //sætter answer_counter til at starte fra tidligere spørgsmål.
             update();
         }
         else if (view==stopTest){
@@ -101,18 +97,17 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
     }
     public void setQuestion(){
         TextView tv = (TextView) findViewById(R.id.question);
-        tv.setText(questions[i]);
+        tv.setText((questAnws[i][0])); //spørgsmålet er altid position 0 i hver array
     }
 
     public void setChoices(){ //laver radiobuttons i radioGroup, giver hver knap ID fra 0-3 alt efter hvor mange svarmuligheder spørgsmålet har.
         RadioButton rdbtn;
-        for(int j=0; j<amount_of_radiobuttons[i]; j++){
+        for(int j=0; j<questAnws[i].length-1; j++){
             RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
             rdbtn = new RadioButton(this);
             rdbtn.setId(j);
-            rdbtn.setText(answers[answer_counter]); //sætter tekst alt efter hvor i svar-arrayet vi er.
+            rdbtn.setText(questAnws[i][j+1]); //sætter tekst alt efter hvor i svar-arrayet vi er.
             rdgrp.addView(rdbtn);
-            answer_counter++;
         }
     }
 
@@ -126,21 +121,25 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         int checkedButt = rdgrp.getCheckedRadioButtonId(); // ID itereres fra 0 til antal knapper. Vi bruger ID+1 som værdi til udregning af risikoprofil pr. spørgsmål (efter kundens ønske)
 
         if (i == 0) {                         //spg.1 har 17% vægtning.
-            double value = (checkedButt + 1) * 1.17; //checkedBut er ID på radiobuttons, vi starter fra 0 når vi sætter rdbtn-ids derfor +1
+            double value = (checkedButt + 1) * 0.17; //checkedBut er ID på radiobuttons, vi starter fra 0 når vi sætter rdbtn-ids derfor +1
             values.add(value);
+            System.out.println("value 1:" + value);
         }
         if (i == 1 && checkedButt == 2) { //hvis checkedBut i spørgsmål 2 er svar-mulighed 3 skal værdien være 4
-            double value = 4 * 1.26;
+            double value = 4 * 0.26;
             values.add(value);
+            System.out.println("value 2 (specielt): " + value);
         }
         else if (i == 1) {  //spg. 2 har 26% vægtning.
-            double value = (checkedButt + 1) * 1.26;
+            double value = (checkedButt + 1) * 0.26;
             values.add(value);
+            System.out.println("value 2: " + value);
         }
 
         if (i == 2) { //spg. 3 udregnes 5 - svar(radiobuttonid) og vægtes med 57%
-            double value = (5 - checkedButt + 1) * 1.57;
+            double value = (3 - checkedButt + 1) * 0.57;
             values.add(value);
+            System.out.println("value 3: " + value);
         }
         if (i == 3) { //spg. 4 indgår ikke i udregningsprocessen, men svaret skal muligvis bruges.
             RadioButton rdbtn = (RadioButton) rdgrp.getChildAt(checkedButt);

@@ -45,6 +45,13 @@
         <item>Udstationering</item>
     </string-array>
 
+    <string-array name="question1">
+        <item>Ingen betydning</item>
+        <item>Nogen betydning</item>
+        <item>Forholdsvis stor betydning</item>
+        <item>Meget stor betydning</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
