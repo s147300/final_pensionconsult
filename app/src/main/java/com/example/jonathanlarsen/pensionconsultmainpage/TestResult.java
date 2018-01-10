@@ -56,7 +56,7 @@ public class TestResult extends AppCompatActivity implements View.OnClickListene
         }
 
         else if (view== endTest){
-            Intent i = new Intent(this, new_FrontPage.class);
+            Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
             finish();
         }

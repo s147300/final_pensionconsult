@@ -1,62 +1,44 @@
 package com.example.jonathanlarsen.pensionconsultmainpage;
 
-import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.Home;
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.Contact;
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.News;
 
-public class FrontPage extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button Test, showtext;
-    ImageView frontpageimg;
-    TextView text;
-    AnimationDrawable frameAnimation;
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_front_page);
+        setContentView(R.layout.activity_main_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        frontpageimg = (ImageView) findViewById(R.id.imageView);
-        frontpageimg.setImageDrawable(getResources().getDrawable(R.drawable.frontpageanim));
-
-        text = (TextView) findViewById(R.id.infotext);
-        text.setText(Html.fromHtml(getString(R.string.Introtext)));
-
-        showtext = (Button) findViewById(R.id.readmore);
-        showtext.setOnClickListener(this);
-
-        frameAnimation = (AnimationDrawable) frontpageimg.getDrawable();
-        frameAnimation.start();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Test = (Button) findViewById(R.id.test);
-
-        Test.setOnClickListener(this);
+        fragment = new Home();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
     }
 
     @Override
@@ -83,43 +65,27 @@ public class FrontPage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_news) {
+        if (id == R.id.nav_home) {
+            fragment = new Home();
 
+        } else if (id == R.id.nav_news) {
+            fragment = new News();
 
-            Intent i = new Intent(this, NewsActivity.class);
-            startActivity(i);
         } else if (id == R.id.nav_guide) {
-
-        } else if (id == R.id.nav_info) {
-            Intent i = new Intent(this, InfoActivity.class);
-            startActivity(i);
 
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_contact) {
-            Intent i = new Intent(this, Contact.class);
-            startActivity(i);
+            fragment = new Contact();
         }
+
+        // Commit fragment transaction
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, fragment);
+        ft.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == Test) {
-            Intent i = new Intent(this, TestQuestions.class);
-            startActivity(i);
-        }
-        if (v == showtext) {
-            if (showtext.getText().toString().equalsIgnoreCase("VIS MERE")) {
-                text.setMaxLines(Integer.MAX_VALUE);//your TextView
-                showtext.setText("SE MINDRE");
-            } else {
-                text.setMaxLines(5);//your TextView
-                showtext.setText("VIS MERE");
-            }
-        }
     }
 }
