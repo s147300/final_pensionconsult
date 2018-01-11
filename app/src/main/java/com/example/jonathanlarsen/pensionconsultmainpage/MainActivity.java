@@ -1,5 +1,6 @@
 package com.example.jonathanlarsen.pensionconsultmainpage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -71,9 +72,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_news) {
             fragment = new News();
 
-        } else if (id == R.id.nav_guide) {
-
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_test) {
+            Intent i = new Intent(this, TestQuestions.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_contact) {
             fragment = new Contact();

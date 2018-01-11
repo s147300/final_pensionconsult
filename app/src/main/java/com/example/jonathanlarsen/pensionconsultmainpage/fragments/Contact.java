@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,10 @@ public class Contact extends Fragment implements View.OnClickListener {
 
     private Button sendButton;
     private String name, mail, subject, comment;
+
+    private EditText etName;
+    private EditText etSenderMail;
+    private EditText etComment;
 
     // Initiate spinner variables
     Spinner mySpinner;
@@ -47,7 +52,12 @@ public class Contact extends Fragment implements View.OnClickListener {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
-//        startLayout();
+        etName = view.findViewById(R.id.etName);
+        etSenderMail = view.findViewById(R.id.etSenderMail);
+        etComment = view.findViewById(R.id.etComment);
+
+
+        startLayout();
 
 
         return view;
@@ -56,59 +66,20 @@ public class Contact extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == sendButton) {
-
+    System.out.println(name + ", " + mail);
             setVariables(view);
-            if (!name.equals("")) {
-                if (!mail.equals("")) {
-                    //tjek mail
-                    try {
-                        String[] mailPart = mail.split("@");
-                        if (mailPart[1].equalsIgnoreCase("hotmail.com") || mailPart[1].equalsIgnoreCase("gmail.com") ||
-                                mailPart[1].equalsIgnoreCase("live.dk") || mailPart[1].equalsIgnoreCase("yahoo.com")) {
 
-                            sendMessage(view);
-                        }
-                    } catch (Exception e) {
-                        AlertDialog dialog = new AlertDialog.Builder(view.getContext())
-                                .create();
-                        dialog.setCancelable(false);
-                        dialog.setTitle("Invalid Mail!" + name);
-                        dialog.setMessage("You entered a false e-mail! \nPlease enter your e-mail");
-                        dialog.setButton(view.getContext().getString(R.string.Ok_text), new DialogInterface.OnClickListener() {
+            if (TextUtils.isEmpty(name)) { etName.setError("Angiv venligst navn."); return; }
+            if (TextUtils.isEmpty(mail)) { etSenderMail.setError("Angiv venligst din mail."); return; }
 
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        dialog.show();
-                    }
-                } else {
-                    AlertDialog dialog = new AlertDialog.Builder(view.getContext())
-                            .create();
-                    dialog.setCancelable(false);
-                    dialog.setTitle("Missing Mail!");
-                    dialog.setMessage("You didn't enter a mail");
-                    dialog.setButton(view.getContext().getString(R.string.Ok_text), new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    dialog.show();
-                }
-            } else {
-                AlertDialog dialog = new AlertDialog.Builder(view.getContext())
-                        .create();
-                dialog.setCancelable(false);
-                dialog.setTitle("Missing Name!");
-                dialog.setMessage("You didn't enter a name");
-                dialog.setButton(view.getContext().getString(R.string.Ok_text), new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+            //Verify mail
+            if (!mail.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$")) {
+                // Mail does not match the criteria
+                etSenderMail.setError("Invalid e-mail adresse.");
+                return;
+            }else {
+                // Mail is validated
+                sendMessage(view);
             }
         }
     }
@@ -132,15 +103,12 @@ public class Contact extends Fragment implements View.OnClickListener {
     public void setVariables (View view) {
         // Get variables from editable text
         // Name
-        EditText etName = (EditText) view.findViewById(R.id.etName);
         name = etName.getText().toString();
         // Sender email
-        EditText etSubject = (EditText) view.findViewById(R.id.etMail);
-        mail = etSubject.getText().toString();
+        mail = etSenderMail.getText().toString();
         // Spinner
         subject = mySpinner.getSelectedItem().toString();
         // Comment
-        EditText etComment = (EditText) view.findViewById(R.id.etComment);
         comment = etComment.getText().toString();
     }
 
