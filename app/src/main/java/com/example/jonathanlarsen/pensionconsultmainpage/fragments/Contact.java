@@ -22,6 +22,7 @@ import com.example.jonathanlarsen.pensionconsultmainpage.R;
  */
 public class Contact extends Fragment implements View.OnClickListener {
 
+    
     private Button sendButton;
     private String name, mail, subject, comment;
 
