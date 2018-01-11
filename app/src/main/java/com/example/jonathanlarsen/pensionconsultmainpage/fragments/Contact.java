@@ -73,8 +73,8 @@ public class Contact extends Fragment implements View.OnClickListener {
             if (TextUtils.isEmpty(name)) { etName.setError("Angiv venligst navn."); return; }
             if (TextUtils.isEmpty(mail)) { etSenderMail.setError("Angiv venligst din mail."); return; }
 
+            if (!isValidEmail(mail)) {
             //Verify mail
-            if (!mail.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$")) {
                 // Mail does not match the criteria
                 etSenderMail.setError("Invalid e-mail adresse.");
                 return;
@@ -101,7 +101,7 @@ public class Contact extends Fragment implements View.OnClickListener {
         return true;
     }
 
-    public void setVariables (View view) {
+    private void setVariables (View view) {
         // Get variables from editable text
         // Name
         name = etName.getText().toString();
@@ -111,6 +111,15 @@ public class Contact extends Fragment implements View.OnClickListener {
         subject = mySpinner.getSelectedItem().toString();
         // Comment
         comment = etComment.getText().toString();
+    }
+
+    private boolean isValidEmail(String mail) {
+
+        if (TextUtils.isEmpty(mail)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        }
     }
 
     public void sendMessage(View view) {
