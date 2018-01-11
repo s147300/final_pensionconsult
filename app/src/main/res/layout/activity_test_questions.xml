@@ -18,7 +18,7 @@
         android:theme="@style/primaryButtons"
         app:layout_constraintBottom_toTopOf="@+id/anullBut"
         app:layout_constraintEnd_toStartOf="@+id/nextBut"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
         app:layout_constraintVertical_bias="0.0" />
@@ -26,20 +26,19 @@
 
     <Button
         android:id="@+id/anullBut"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
+        android:layout_width="161dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Stop test"
-
+        android:theme="@style/anullButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/question"
@@ -79,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="68dp"
         android:layout_marginTop="36dp"
 
         android:elevation="9dp"

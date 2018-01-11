@@ -25,4 +25,8 @@
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="android:textColor">@color/grey</item>
     </style>
+    <style name="anullButton" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@color/red</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
 </resources>
