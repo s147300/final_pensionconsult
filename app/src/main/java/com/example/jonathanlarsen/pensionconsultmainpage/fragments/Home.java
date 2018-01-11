@@ -1,6 +1,7 @@
 package com.example.jonathanlarsen.pensionconsultmainpage.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
+import com.example.jonathanlarsen.pensionconsultmainpage.TestQuestions;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +43,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //Intent i = new Intent(this, TestQuestions.class);
-        //startActivity(i);
+        Intent i = new Intent(this.getActivity(), TestQuestions.class);
+        startActivity(i);
     }
 }

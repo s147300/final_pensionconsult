@@ -3,8 +3,9 @@
     <color name="colorPrimary">#1382da</color>
     <color name="colorPrimaryDark">#454545</color>
     <color name="colorAccent">#1382da</color>
-    <color name="unchecked">#E0E0E0</color>
-    <color name="checked">#009688</color>
+    <color name="unchecked">#BDBDBD</color>
+    <color name="checked">#1382da</color>
     <color name="grey">#EEEEEE</color>
     <color name="orange">#FFA726</color>
+    <color name="red">#C62828</color>
 </resources>
