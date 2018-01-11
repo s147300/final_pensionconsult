@@ -26,5 +26,4 @@
         <activity android:name=".TestQuestions"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
-
 </manifest>
