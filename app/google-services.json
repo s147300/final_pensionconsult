@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "63608491171",
-    "firebase_url": "https://pensionconsult-84ffd.firebaseio.com",
-    "project_id": "pensionconsult-84ffd",
-    "storage_bucket": "pensionconsult-84ffd.appspot.com"
+    "project_number": "277194453028",
+    "firebase_url": "https://test-stats-4b610.firebaseio.com",
+    "project_id": "test-stats-4b610",
+    "storage_bucket": "test-stats-4b610.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:63608491171:android:a8e6ce3a55e8e776",
+        "mobilesdk_app_id": "1:277194453028:android:a8e6ce3a55e8e776",
         "android_client_info": {
           "package_name": "com.example.jonathanlarsen.pensionconsultmainpage"
         }
       },
       "oauth_client": [
         {
-          "client_id": "63608491171-n1e95i16fn2ha5fvca2j0f50igsn402f.apps.googleusercontent.com",
+          "client_id": "277194453028-gkv3q6pn1447vi6i2mc6avr4j1bprsam.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDPUFF1NQaLfjevasHlw6186KxY8gAwtsQ"
+          "current_key": "AIzaSyD4krTb2YHlAtvbBcdH_FPqxbzM148ORqQ"
         }
       ],
       "services": {

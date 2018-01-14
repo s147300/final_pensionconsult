@@ -17,9 +17,7 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
     Button back, next, stopTest;
     ProgressBar bar;
     int i = 0; //spørgsmåls iterator
-    List<Double> values = new ArrayList<Double>();
-
-    //bliver lavet til array of arrays og lagt i string res.
+    List<Double> values = new ArrayList<Double>(); //liste fyldes med værdier alt efter svar.
 
 
     String[][] questAnws = new String[][]{
@@ -76,12 +74,8 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-
-    //skal have implementeret næste klik uden radiobuttenPressed.
     @Override
     public void onClick(View view) {
-
 
         if (view==next && i==3){ //når der bliver trykket næste ved sidste spørgsmål.
             answerCalc();
@@ -150,7 +144,6 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
             values.add(value);
             System.out.println("value 2: " + value);
         }
-
         if (i == 2) { //spg. 3 udregnes 5 - svar(radiobuttonid) og vægtes med 57%
             double value = (3 - checkedButt + 1) * 0.57;
             values.add(value);
