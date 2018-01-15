@@ -4,7 +4,9 @@ package com.example.jonathanlarsen.pensionconsultmainpage.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.jonathanlarsen.pensionconsultmainpage.Logic.MailSender;
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
 
 /**
@@ -69,18 +70,23 @@ public class Contact extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == sendButton) {
-    System.out.println(name + ", " + mail);
             setVariables(view);
 
-            if (TextUtils.isEmpty(name)) { etName.setError("Angiv venligst navn."); return; }
-            if (TextUtils.isEmpty(mail)) { etSenderMail.setError("Angiv venligst din mail."); return; }
+            if (TextUtils.isEmpty(name)) {
+                etName.setError("Angiv venligst navn.");
+                return;
+            }
+            if (TextUtils.isEmpty(mail)) {
+                etSenderMail.setError("Angiv venligst din mail.");
+                return;
+            }
 
             if (!isValidEmail(mail)) {
-            //Verify mail
+                //Verify mail
                 // Mail does not match the criteria
                 etSenderMail.setError("Invalid e-mail adresse.");
                 return;
-            }else {
+            } else {
                 // Mail is validated
                 sendMessage(view);
             }
@@ -88,7 +94,7 @@ public class Contact extends Fragment implements View.OnClickListener {
     }
 
 
-    public void startLayout () {
+    public void startLayout() {
         sendButton.setOnClickListener(this);
     }
 
@@ -96,14 +102,14 @@ public class Contact extends Fragment implements View.OnClickListener {
     public boolean isAlpha(String name) {
         char[] chars = name.toCharArray();
         for (char c : chars) {
-            if(!Character.isLetter(c)) {
+            if (!Character.isLetter(c)) {
                 return false;
             }
         }
         return true;
     }
 
-    private void setVariables (View view) {
+    private void setVariables(View view) {
         // Get variables from editable text
         // Name
         name = etName.getText().toString();
@@ -126,20 +132,8 @@ public class Contact extends Fragment implements View.OnClickListener {
 
     public void sendMessage(View view) {
 
-        new Thread(new Runnable() {
+        System.out.println("mail sent..");
 
-            @Override
-            public void run() {
-                try {
-                    MailSender sender = new MailSender(name, mail, subject, comment);
-                    sender.sendMail();
-                } catch (Exception e) {
-                    Log.e("SendMail", e.getMessage(), e);
-                }
-            }
-
-        }).start();
-//
 //        /* Create the Intent */
 //        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 //
@@ -153,3 +147,4 @@ public class Contact extends Fragment implements View.OnClickListener {
 //        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
     }
 }
+
