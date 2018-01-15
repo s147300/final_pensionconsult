@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.jonathanlarsen.pensionconsultmainpage.Logic.MailSender;
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
 
 /**
@@ -123,16 +125,31 @@ public class Contact extends Fragment implements View.OnClickListener {
     }
 
     public void sendMessage(View view) {
-        /* Create the Intent */
-        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-        /* Fill it with Data */
-        emailIntent.setType("plain/text");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"dannyjoensson@gmail.com"});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject:" + subject);
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Comment: " + comment + "From: " + name + " Mail: " + mail);
+        new Thread(new Runnable() {
 
-        /* Send it off to the Activity-Chooser */
-        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            @Override
+            public void run() {
+                try {
+                    MailSender sender = new MailSender(name, mail, subject, comment);
+                    sender.sendMail();
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }
+            }
+
+        }).start();
+//
+//        /* Create the Intent */
+//        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+//
+//        /* Fill it with Data */
+//        emailIntent.setType("plain/text");
+//        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"dannyjoensson@gmail.com"});
+//        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject:" + subject);
+//        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Comment: " + comment + "From: " + name + " Mail: " + mail);
+//
+//        /* Send it off to the Activity-Chooser */
+//        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
     }
 }

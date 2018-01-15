@@ -22,6 +22,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions {
+        // used for android mail
+        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+    }
+}
+repositories {
+    // Used for android mail
+    jcenter()
+    maven {
+        url "https://maven.java.net/content/groups/public/"
+    }
 }
 
 dependencies {
@@ -34,8 +46,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "com.androidplot:androidplot-core:1.5.3"
+    compile 'com.sun.mail:android-mail:1.6.0'
+    compile 'com.sun.mail:android-activation:1.6.0'
     testCompile 'junit:junit:4.12'
 }
+
+
+
+
 
 
 

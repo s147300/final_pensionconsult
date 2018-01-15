@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.GraphsPager;
 import com.example.jonathanlarsen.pensionconsultmainpage.fragments.Home;
 import com.example.jonathanlarsen.pensionconsultmainpage.fragments.Contact;
 import com.example.jonathanlarsen.pensionconsultmainpage.fragments.News;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_news) {
             fragment = new News();
+        }else if (id == R.id.nav_graphs) {
+            fragment = new GraphsPager();
 
         } else if (id == R.id.nav_test) {
             Intent i = new Intent(this, TestQuestions.class);
