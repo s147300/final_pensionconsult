@@ -29,4 +29,8 @@
         <item name="colorButtonNormal">@color/red</item>
         <item name="android:textColor">@color/grey</item>
     </style>
+    <style name="MyProgressDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:textColor">@color/ap_black</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
 </resources>

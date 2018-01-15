@@ -1,15 +1,10 @@
 package com.example.jonathanlarsen.pensionconsultmainpage.fragments;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
+import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.jonathanlarsen.pensionconsultmainpage.Logic.MailSender;
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
 
 /**
@@ -32,6 +29,8 @@ public class Contact extends Fragment implements View.OnClickListener {
     private EditText etName;
     private EditText etSenderMail;
     private EditText etComment;
+
+    private ProgressDialog pdialog;
 
     // Initiate spinner variables
     Spinner mySpinner;
@@ -131,20 +130,12 @@ public class Contact extends Fragment implements View.OnClickListener {
     }
 
     public void sendMessage(View view) {
+        MailSender mailsender = new MailSender(view.getContext(), name, mail, subject, comment);
+//        pdialog = ProgressDialog.show(getContext(), "", "Sender henvendelsen...", true);
 
-        System.out.println("mail sent..");
-
-//        /* Create the Intent */
-//        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-//
-//        /* Fill it with Data */
-//        emailIntent.setType("plain/text");
-//        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"dannyjoensson@gmail.com"});
-//        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject:" + subject);
-//        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Comment: " + comment + "From: " + name + " Mail: " + mail);
-//
-//        /* Send it off to the Activity-Chooser */
-//        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            etName.setText("");
+            etSenderMail.setText("");
+            etComment.setText("");
     }
 }
 
