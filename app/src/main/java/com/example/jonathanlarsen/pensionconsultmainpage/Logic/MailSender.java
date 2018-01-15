@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
 
-import org.w3c.dom.Text;
-
 import java.security.Security;
 import java.util.Properties;
 
@@ -113,20 +111,32 @@ public class MailSender extends javax.mail.Authenticator {
                 messageToCustomer.setContent(contentToCustomer, "text/html; charset=utf-8");
 
                 Transport.send(messageToCustomer);
+                return "success";
 
             } catch (MessagingException e) {
                 e.printStackTrace();
+                return "authentication-failed";
             } catch (Exception e) {
                 e.printStackTrace();
+                return "failed";
             }
-            return null;
         }
 
         // stop it when done
         protected void onPostExecute(String result) {
             pdialog.dismiss();
 
-            Toast.makeText(context.getApplicationContext(), "Henvendelsen er sendt. Du modtager om et øjeblik en bekræftelse på mail", Toast.LENGTH_LONG).show();
+            if (result.matches("success")) {
+                // Ved success
+                Toast.makeText(context.getApplicationContext(), "Henvendelsen er sendt. Du modtager om et øjeblik en bekræftelse på mail", Toast.LENGTH_LONG).show();
+            }else if (result.matches("authentication-failed")) {
+                // In case there's an authentication error - for example due to invalid username and or password
+                Toast.makeText(context.getApplicationContext(), "(401) Noget gik galt - prøv venligst senere", Toast.LENGTH_LONG).show();
+            }else {
+                // Catch everything else and give a standard error
+                Toast.makeText(context.getApplicationContext(), "Noget gik galt - Prøv venligst senere", Toast.LENGTH_LONG).show();
+
+            }
         }
     }
 }
