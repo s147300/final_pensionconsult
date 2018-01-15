@@ -31,19 +31,50 @@ public class TestStatistic  {
 
     }
 
-    public TestStatistic(String result, int taken){
+    /*public TestStatistic(String result, int taken){
         this.result = result;
         this.taken = taken;
-
-/*
-        ref = FirebaseDatabase.getInstance().getReference(); //database
-        ref.child("results").child("Risikovillig").child("taken").setValue(0);
-        ref.child("results").child("Gennemsnitlig").child("taken").setValue(0);
-        ref.child("results").child("Lav").child("taken").setValue(0);
-        ref.child("results").child("Forsigtig").child("taken").setValue(0);
-        */
     }
+    */
+    public void updateResult (DatabaseReference resultRef) {
+        resultRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                TestStatistic p = mutableData.getValue(TestStatistic.class);
+                if (p == null) {
+                    System.out.println("vi er null");
+                    return Transaction.success(mutableData);
+                }
+                p.taken++;
+                System.out.println("Vi var her");
+                mutableData.setValue(p);
+                return Transaction.success(mutableData);
 
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b,
+                                   DataSnapshot dataSnapshot) {
+            }
+        });
+
+    }
+    public String setText() {
+        ref = FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Risikovillig/taken");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println("Token = " + dataSnapshot.getValue());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return "yes";
+    }
 
 
     }

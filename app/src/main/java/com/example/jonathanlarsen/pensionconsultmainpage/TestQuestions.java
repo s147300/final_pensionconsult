@@ -103,13 +103,13 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
          finish();
         }
     }
-    public void setQuestion(){
+    private void setQuestion(){
         next.setEnabled(false);
         TextView tv = (TextView) findViewById(R.id.question);
         tv.setText((questAnws[i][0])); //spørgsmålet er altid position 0 i hvert array
     }
 
-    public void setChoices(){ //laver radiobuttons i radioGroup, giver hver knap ID fra 0-3 alt efter hvor mange svarmuligheder spørgsmålet har.
+    private void setChoices(){ //laver radiobuttons i radioGroup, giver hver knap ID fra 0-3 alt efter hvor mange svarmuligheder spørgsmålet har.
         RadioButton rdbtn;
         for(int j=0; j<questAnws[i].length-1; j++){
             RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
@@ -120,12 +120,12 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void removeOldChoices(){
+    private void removeOldChoices(){
         RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
         rdgrp.removeAllViews();
     }
 
-    public void answerCalc() {
+    private void answerCalc() {
         RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
         int checkedButt = rdgrp.getCheckedRadioButtonId(); // ID itereres fra 0 til antal knapper. Vi bruger ID+1 som værdi til udregning af risikoprofil pr. spørgsmål (efter kundens ønske)
 
@@ -155,13 +155,13 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
             sum();
         }
     }
-    public void update(){
+    private void update(){
         bar.setProgress(i);
         setQuestion();
         removeOldChoices();
         setChoices();
     }
-    public double sum(){ //summerer vores array med værdier, så vi kan videresende den endelig værdi til evaluering.
+    private double sum(){ //summerer vores array med værdier, så vi kan videresende den endelig værdi til evaluering.
         double sum = 0;
         for(Double d : values)
             sum += d;
