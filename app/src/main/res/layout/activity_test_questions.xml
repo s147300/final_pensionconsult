@@ -8,32 +8,36 @@
 
     <Button
         android:id="@+id/backBut"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="107dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:text="tilbage"
-        android:theme="@style/primaryButtons"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/anullBut"
         app:layout_constraintEnd_toStartOf="@+id/nextBut"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.862" />
 
 
     <Button
         android:id="@+id/anullBut"
-        android:layout_width="161dp"
-        android:layout_height="46dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="112dp"
+        android:layout_height="38dp"
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Stop test"
-        android:theme="@style/anullButton"
+        android:alpha="0.80"
+        android:text="Annuller"
+        android:textColor="@color/ap_black"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,51 +54,54 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/ap_black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473"
-        tools:layout_editor_absoluteX="29dp"
+        app:layout_constraintVertical_bias="0.506"
         tools:text="Spørgsmål 1" />
 
     <RadioGroup
         android:id="@+id/radioGroup3"
         android:layout_width="325dp"
-        android:layout_height="172dp"
-        android:layout_marginBottom="170dp"
+        android:layout_height="156dp"
+        android:layout_marginBottom="228dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="30dp">
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent">
 
     </RadioGroup>
 
     <Button
         android:id="@+id/nextBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="107dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginEnd="64dp"
 
+        android:layout_marginTop="36dp"
         android:elevation="9dp"
         android:text="næste"
+        android:textColor="@color/colorPrimary"
         android:theme="@style/QuestionButton"
         app:layout_constraintBottom_toTopOf="@+id/anullBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.862" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="325dp"
-        android:layout_height="15dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="12dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
@@ -108,6 +115,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903"
+        app:srcCompat="@drawable/sojle" />
 
 
 </android.support.constraint.ConstraintLayout>

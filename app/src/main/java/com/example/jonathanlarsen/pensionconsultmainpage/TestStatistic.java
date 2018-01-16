@@ -1,12 +1,5 @@
 package com.example.jonathanlarsen.pensionconsultmainpage;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,13 +8,27 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by Morten on 13-01-2018.
  */
 
 public class TestStatistic  {
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public int getTaken() {
+        return taken;
+    }
+
+    public void setTaken(int taken) {
+        this.taken = taken;
+    }
 
     public String result;
     public int taken=0;
@@ -59,12 +66,15 @@ public class TestStatistic  {
         });
 
     }
-    public String setText() {
-        ref = FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Risikovillig/taken");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void setText() {
+        ref = FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Tests/1/result");
+            ValueEventListener testListner = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("Token = " + dataSnapshot.getValue());
+                    System.out.print("datasnapshot" + dataSnapshot.getValue());
+                    //String hello = test.getResult();
+                    //System.out.println(hello);
+
 
             }
 
@@ -72,10 +82,12 @@ public class TestStatistic  {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
-        return "yes";
+        };
+        ref.addValueEventListener(testListner);
+    }
+
     }
 
 
-    }
+
 

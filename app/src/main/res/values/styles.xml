@@ -19,7 +19,7 @@
 
     <style name="QuestionButton" parent="ThemeOverlay.AppCompat">
         <item name="colorButtonNormal">@drawable/btn_questions</item>
-        <item name="android:textColor">@color/grey</item>
+
     </style>
     <style name="primaryButtons" parent="ThemeOverlay.AppCompat">
         <item name="colorButtonNormal">@color/colorPrimary</item>

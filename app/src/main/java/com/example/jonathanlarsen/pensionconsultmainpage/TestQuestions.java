@@ -67,8 +67,9 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         rdgrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) { //når radiobutton pressed, aktiver næste knap og sæt visibility.
                 next.setEnabled(true);
+                next.setAlpha(1.0f);
             }
         });
     }
@@ -105,6 +106,7 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
     }
     private void setQuestion(){
         next.setEnabled(false);
+        next.setAlpha(0.26f);
         TextView tv = (TextView) findViewById(R.id.question);
         tv.setText((questAnws[i][0])); //spørgsmålet er altid position 0 i hvert array
     }

@@ -40,20 +40,21 @@ public class TestResult extends AppCompatActivity implements View.OnClickListene
 
         Bundle Extra = getIntent().getExtras(); //udpakker extras sendt fra intent (her mainactivity)
         double value = Extra.getDouble("sum");
+        System.out.println("sum = " + value);
 
 
-        if (value < 2.84) {
+        if (value <= 2.84) {
             headline.setText("Risikobetonet invisteringsprofil");
             resultText.setText("Med en risikobetonet invisteringsprofil er du villig til at tage chancer for muligheden for større afkast. Vi anbefaler det til yngre personer, der kan nå at geninvinde eventuelle tab, samt til personer som tror de vil være mindre afhængige af deres pension som ældre.");
-            test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Risikovillig"));
+            test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Tests/1"));
             test.setText();
         }
-        if (value > 2.84 && value < 3.15) {
+        if (value > 2.84 && value <= 3.15) {
             headline.setText("Gennemsnitlig invisteringsprofil");
             resultText.setText("Med en gennemsnitlig invisteringsprofil er du villig til at tage chancer, men måske kun i dele af din opsparingsperiode. Det kan f.eks. være givligt for dig invisterer din pension i aktier imens du er ung og senere skifte over til obligationer");
             test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Gennemsnitlig"));
         }
-        if (value > 3.15 && value < 3.48) {
+        if (value > 3.15 && value <= 3.48) {
             headline.setText("Forsigtig invisteringsprofil");
             resultText.setText("Med en forsigtig invisteringsprofil er det bedste at holde sig til invistering med lave svingninger, typisk obligatione. Der kan dog stadig være fordele ved at ændre til en mere risikobetonet gruppe i perioder af dit liv. Vi vil gerne hjælpe dig med at tage beslutninger omkring din pension undervejs. ");
             test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Forsigtig"));

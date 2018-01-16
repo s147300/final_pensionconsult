@@ -13,7 +13,6 @@
         android:layout_height="136dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,12 +21,19 @@
 
     <Button
         android:id="@+id/takeTestBut"
-        android:layout_width="112dp"
-        android:layout_height="57dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="188dp"
+        android:layout_height="39dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="tag test"
+        android:background="@android:drawable/screen_background_dark"
+
+        android:backgroundTint="@color/colorPrimaryLessOpacity"
+        android:elevation="0dp"
+        android:text="Find din risikoprofil"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
         android:theme="@style/primaryButtons"
         app:layout_constraintBottom_toTopOf="@+id/imageView8"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,20 +41,20 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="319dp"
+        android:layout_width="289dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
         app:srcCompat="@drawable/sojle" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="319dp"
-        android:layout_height="32dp"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -60,7 +66,7 @@
     <TextView
         android:id="@+id/FPtext"
         android:layout_width="308dp"
-        android:layout_height="208dp"
+        android:layout_height="241dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -68,11 +74,10 @@
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/takeTestBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
