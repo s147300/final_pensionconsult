@@ -1,6 +1,8 @@
 package com.example.jonathanlarsen.pensionconsultmainpage;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,10 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 
 public class TestResult extends AppCompatActivity implements View.OnClickListener {
+
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor prefsEditor;
+
     Button testAgain, endTest;
     TextView headline, resultText;
     public String result;
@@ -26,6 +32,12 @@ public class TestResult extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_result);
+
+        prefs = getSharedPreferences("investmentprofile", Context.MODE_PRIVATE);
+        prefsEditor = prefs.edit();
+        prefsEditor.putBoolean("chosen", true).apply();
+
+
 
         ref = FirebaseDatabase.getInstance().getReference(); //database
 
@@ -44,25 +56,30 @@ public class TestResult extends AppCompatActivity implements View.OnClickListene
 
 
         if (value <= 2.84) {
-            headline.setText("Risikobetonet invisteringsprofil");
-            resultText.setText("Med en risikobetonet invisteringsprofil er du villig til at tage chancer for muligheden for større afkast. Vi anbefaler det til yngre personer, der kan nå at geninvinde eventuelle tab, samt til personer som tror de vil være mindre afhængige af deres pension som ældre.");
+            headline.setText("Risikobetonet investeringsprofil");
+            resultText.setText("Med en risikobetonet investeringsprofil er du villig til at tage chancer for muligheden for større afkast. Vi anbefaler det til yngre personer, der kan nå at geninvinde eventuelle tab, samt til personer som tror de vil være mindre afhængige af deres pension som ældre.");
             test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Tests/1"));
             test.setText();
+            prefsEditor.putString("profile", "Risikobetonet investeringsprofil").apply();
+
         }
         if (value > 2.84 && value <= 3.15) {
-            headline.setText("Gennemsnitlig invisteringsprofil");
-            resultText.setText("Med en gennemsnitlig invisteringsprofil er du villig til at tage chancer, men måske kun i dele af din opsparingsperiode. Det kan f.eks. være givligt for dig invisterer din pension i aktier imens du er ung og senere skifte over til obligationer");
+            headline.setText("Gennemsnitlig investeringsprofil");
+            resultText.setText("Med en gennemsnitlig investeringsprofil er du villig til at tage chancer, men måske kun i dele af din opsparingsperiode. Det kan f.eks. være givligt for dig investerer din pension i aktier imens du er ung og senere skifte over til obligationer");
             test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Gennemsnitlig"));
+            prefsEditor.putString("profile", "Gennemsnitlig investeringsprofil").apply();
         }
         if (value > 3.15 && value <= 3.48) {
-            headline.setText("Forsigtig invisteringsprofil");
-            resultText.setText("Med en forsigtig invisteringsprofil er det bedste at holde sig til invistering med lave svingninger, typisk obligatione. Der kan dog stadig være fordele ved at ændre til en mere risikobetonet gruppe i perioder af dit liv. Vi vil gerne hjælpe dig med at tage beslutninger omkring din pension undervejs. ");
+            headline.setText("Forsigtig investeringsprofil");
+            resultText.setText("Med en forsigtig investeringsprofil er det bedste at holde sig til investering med lave svingninger, typisk obligatione. Der kan dog stadig være fordele ved at ændre til en mere risikobetonet gruppe i perioder af dit liv. Vi vil gerne hjælpe dig med at tage beslutninger omkring din pension undervejs. ");
             test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Forsigtig"));
+            prefsEditor.putString("profile", "Forsigtig investeringsprofil").apply();
         }
         if (value > 3.48) {
-            headline.setText("Meget lav invisteringsprofil");
-            resultText.setText("Med en meget lav invisteringsprofil sværger du til de mest sikre invisteringer. Her er du sikker på at din pension ikke kommer ud for større tab på bekostning af invisteringer \n på den måde er din mulige gevinst også lille, men det du indbetaler er det du kan regne med står tilbage når tiden kommer.");
+            headline.setText("Meget lav investeringsprofil");
+            resultText.setText("Med en meget lav investeringsprofil sværger du til de mest sikre investeringer. Her er du sikker på at din pension ikke kommer ud for større tab på bekostning af investeringer \n på den måde er din mulige gevinst også lille, men det du indbetaler er det du kan regne med står tilbage når tiden kommer.");
             test.updateResult(FirebaseDatabase.getInstance().getReferenceFromUrl("https://test-stats-4b610.firebaseio.com/Lav"));
+            prefsEditor.putString("profile", "Meget lav investeringsprofil").apply();
         }
 
     }

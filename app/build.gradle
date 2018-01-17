@@ -46,9 +46,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile "com.androidplot:androidplot-core:1.5.3"
     compile 'com.sun.mail:android-mail:1.6.0'
     compile 'com.sun.mail:android-activation:1.6.0'
+    compile 'com.jjoe64:graphview:4.2.1'
     testCompile 'junit:junit:4.12'
 }
 

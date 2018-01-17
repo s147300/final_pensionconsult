@@ -12,12 +12,12 @@
             android:title="Nyheder" />
         <item
             android:id="@+id/nav_pension_calc"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/pensioncalc"
             android:title="Pensions Beregning" />
         <item
             android:id="@+id/nav_test"
-            android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Investerings profiltest" />
+            android:icon="@drawable/investmentprofile"
+            android:title="Investerings Profilguide" />
     </group>
 
     <item android:title="Kontakt">

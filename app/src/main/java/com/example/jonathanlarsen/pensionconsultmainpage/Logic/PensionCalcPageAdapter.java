@@ -11,7 +11,6 @@ import com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalcul
 
 public class PensionCalcPageAdapter extends FragmentStatePagerAdapter {
 
-
     public PensionCalcPageAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -23,11 +22,11 @@ public class PensionCalcPageAdapter extends FragmentStatePagerAdapter {
                 // Page 1
                 return new PensionCalcOne();
             case 1:
-                // Page 3, apparantly
-                return new PensionCalcThree();
-            case 2:
-                // page 2
+//                 Page 2
                 return new PensionCalcTwo();
+            case 2:
+                // page 3
+                return new PensionCalcThree();
             default:
                 return null;
         }
@@ -37,4 +36,6 @@ public class PensionCalcPageAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return 3;
     }
+
+
 }

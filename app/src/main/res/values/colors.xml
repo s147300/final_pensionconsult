@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#1382da</color>
     <color name="colorPrimaryLessOpacity">#421382da</color>
-
+    <color name="ap_black">#000</color>
     <color name="colorPrimaryDark">#454545</color>
     <color name="colorAccent">#1382da</color>
     <color name="unchecked">#BDBDBD</color>

@@ -1,6 +1,8 @@
 package com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalculates;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -13,10 +15,10 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import static com.example.jonathanlarsen.pensionconsultmainpage.fragments.PensionCalc.pensionCalc;
+
 
 public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeListener {
-
-    public static PensionCalculates pensionCalc;
 
     private SeekBar seekbar;
 
@@ -46,8 +48,6 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
         seekbar = (SeekBar) view.findViewById(R.id.seek_bar01);
         seekbar.setOnSeekBarChangeListener(this);
         seekbar.setMax(20000);
-
-        pensionCalc = new PensionCalculates();
 
         return view;
     }
@@ -88,7 +88,6 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
                 earnedStatistics.setText("Du har betalt: " + pensionCalc.getOwnPayment() + "\n" +
                 "Din renteindtjening er: " + pensionCalc.getRentIncome() + "\n" +
                 "Beregningen er lavet på et afkast på " + (int) pensionCalc.getRent() + "% efter skat og inflation er sat til " + (int) pensionCalc.getInflation() + "%.");
-
 
             }else { end.setText("65"); }
         }else { start.setText("25"); }

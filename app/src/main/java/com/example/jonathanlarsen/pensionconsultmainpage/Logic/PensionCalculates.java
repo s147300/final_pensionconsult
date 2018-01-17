@@ -19,7 +19,7 @@ public class PensionCalculates {
     private float inflation = 1.02f;
     private float inflationPercent = (inflation - 1.00f) * 100;
 
-    private Number[] monthtlyStatus;
+    private int[] monthtlyStatus;
 
     public void setPensionStart(int start) { this.pensionSavingStart = start; }
     public void setPensionEnd(int end) { this.pensionSavingEnd = end; }
@@ -29,7 +29,7 @@ public class PensionCalculates {
     public int getRentIncome() { return rentIncome; }
     public float getRent() { return  interestRate * 100; }
     public float getInflation() { return (float) Math.rint(inflationPercent); }
-    public Number[] getMonthtlyStatus() { return monthtlyStatus; }
+    public int[] getMonthtlyStatus() { return monthtlyStatus; }
     public int getYears() { return years; }
 
 
@@ -40,7 +40,7 @@ public class PensionCalculates {
 
     private void calculateResult() {
         years = pensionSavingEnd - pensionSavingStart;
-        monthtlyStatus = new Number[years];
+        monthtlyStatus = new int[years];
 
         float tmpResult = 0;
         for (int i = 0; i < years; i++) {
@@ -51,7 +51,7 @@ public class PensionCalculates {
             monthtlyStatus[i] = (int) (tmpResult * laborMarket * tax * inflation);
         }
 
-        tmpResult = tmpResult * laborMarket * tax * inflation;
+        tmpResult = monthtlyStatus[years-1];
 
         // parse result to an int
         result = (int) tmpResult;
