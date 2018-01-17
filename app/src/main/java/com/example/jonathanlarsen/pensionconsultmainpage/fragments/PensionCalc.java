@@ -4,6 +4,7 @@ package com.example.jonathanlarsen.pensionconsultmainpage.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,6 @@ public class PensionCalc extends Fragment implements View.OnClickListener, ViewP
 
     @Override
     public void onPageSelected(int position) {
-        System.out.println("selected:" + position);
         switch (position) {
             case 0:
                 prev.setVisibility(View.INVISIBLE);

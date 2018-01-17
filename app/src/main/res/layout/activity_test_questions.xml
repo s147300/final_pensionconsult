@@ -85,7 +85,6 @@
         android:layout_height="55dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="64dp"
-
         android:layout_marginTop="36dp"
         android:elevation="9dp"
         android:text="næste"
@@ -94,7 +93,8 @@
         app:layout_constraintBottom_toTopOf="@+id/anullBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.862"
+        android:layout_marginRight="64dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -129,7 +129,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.903"
-        app:srcCompat="@drawable/sojle" />
+        app:srcCompat="@drawable/sojle"
+        android:layout_marginRight="8dp" />
 
 
 </android.support.constraint.ConstraintLayout>

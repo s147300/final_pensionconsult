@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
@@ -82,7 +83,7 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
                 pensionCalc.setPensionEnd(Integer.parseInt(end.getText().toString()));
 
                 result.setText("" + pensionCalc.getResult());
-            }else { end.setError("Hvornår forventer du at gå på pension?"); }
-        }else { start.setError("I hvilken alder starter din opsparing?"); }
+            }else { end.setText("65"); }
+        }else { start.setText("25"); }
     }
 }
