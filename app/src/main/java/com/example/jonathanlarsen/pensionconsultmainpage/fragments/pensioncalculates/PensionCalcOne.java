@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
@@ -17,12 +16,13 @@ import android.widget.TextView;
 
 public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeListener {
 
-    PensionCalculates pensionCalc;
+    public static PensionCalculates pensionCalc;
 
     private SeekBar seekbar;
 
     private TextView amount;
     private TextView result;
+    private TextView earnedStatistics;
 
     private EditText start;
     private EditText end;
@@ -35,8 +35,9 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pension_calc_one, container, false);
 
-
         amount = (TextView) view.findViewById(R.id.tv_amount);
+        earnedStatistics = (TextView) view.findViewById(R.id.tv_earned_statistics);
+
         result = (TextView) view.findViewById(R.id.tv_result);
 
         start = (EditText) view.findViewById(R.id.et_pensionstart);
@@ -78,11 +79,17 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
             if (!TextUtils.isEmpty(end.getText().toString())) {
                 amount.setText(progress + " kr.");
 
-                pensionCalc.setAmount(progress);
+                pensionCalc.setMonthlyPay(progress);
                 pensionCalc.setPensionStart(Integer.parseInt(start.getText().toString()));
                 pensionCalc.setPensionEnd(Integer.parseInt(end.getText().toString()));
 
                 result.setText("" + pensionCalc.getResult());
+
+                earnedStatistics.setText("Du har betalt: " + pensionCalc.getOwnPayment() + "\n" +
+                "Din renteindtjening er: " + pensionCalc.getRentIncome() + "\n" +
+                "Beregningen er lavet på et afkast på " + (int) pensionCalc.getRent() + "% efter skat og inflation er sat til " + (int) pensionCalc.getInflation() + "%.");
+
+
             }else { end.setText("65"); }
         }else { start.setText("25"); }
     }
