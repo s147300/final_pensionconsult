@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.jonathanlarsen.pensionconsultmainpage.fragments.GraphPageOne">
+    tools:context="com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalculates.PensionCalcOne">
 
     <com.androidplot.xy.XYPlot
         android:id="@+id/plot"
@@ -11,7 +11,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         app:domainTitle="domain"
-        app:lineLabelRotationBottom="-45"
         app:lineLabels="left|bottom"
         app:rangeTitle="range"
         app:title="A Simple XY Plot" />

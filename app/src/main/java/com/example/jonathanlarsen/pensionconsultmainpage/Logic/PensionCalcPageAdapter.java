@@ -4,14 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.jonathanlarsen.pensionconsultmainpage.fragments.GraphPageOne;
-import com.example.jonathanlarsen.pensionconsultmainpage.fragments.GraphPageThree;
-import com.example.jonathanlarsen.pensionconsultmainpage.fragments.GraphPageTwo;
-
-public class GraphPageAdapter extends FragmentStatePagerAdapter {
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalculates.PensionCalcOne;
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalculates.PensionCalcThree;
+import com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalculates.PensionCalcTwo;
 
 
-    public GraphPageAdapter(FragmentManager fm) {
+public class PensionCalcPageAdapter extends FragmentStatePagerAdapter {
+
+
+    public PensionCalcPageAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -20,13 +21,13 @@ public class GraphPageAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 // Page 1
-                return new GraphPageOne();
+                return new PensionCalcOne();
             case 1:
                 // Page 3, apparantly
-                return new GraphPageThree();
+                return new PensionCalcThree();
             case 2:
                 // page 2
-                return new GraphPageTwo();
+                return new PensionCalcTwo();
             default:
                 return null;
         }
