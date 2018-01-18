@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
 import com.jjoe64.graphview.GraphView;
@@ -19,13 +20,15 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import static com.example.jonathanlarsen.pensionconsultmainpage.fragments.PensionCalc.pensionCalc;
 
-public class PensionCalcTwo extends Fragment {
+public class PensionCalcTwo extends Fragment implements View.OnClickListener {
 
     private LineGraphSeries<DataPoint> series;
     private GraphView graph;
 
     private int years;
     private int[] dataYValues;
+
+    private Button updateGraph;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,32 +37,33 @@ public class PensionCalcTwo extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pension_calc_two, container, false);
 
         graph = (GraphView) view.findViewById(R.id.graph_two);
+        updateGraph = (Button) view.findViewById(R.id.update_graph);
+
+        updateGraph.setOnClickListener(this);
 
         refreshGraph();
 
         return view;
     }
 
-//    private DataPoint[] getDataPoint() {
-//        DataPoint[] dataPoints = new DataPoint[years];
-//        for (int i = 0; i < years; i++) {
-//            DataPoint dp = new DataPoint(i, dataYValues[i]);
-//            dataPoints[i] = dp;
-//            System.out.println("test(" + i + "): " + dataPoints[i]);
-//        }
-//        return dataPoints;
-//    }
 
     private void refreshGraph() {
-        series = new LineGraphSeries<>();
-
-        System.out.println("år: " + years);
-
         years = pensionCalc.getYears();
         dataYValues = pensionCalc.getMonthtlyStatus();
 
+
         if (dataYValues != null) {
             if (dataYValues.length == years) {
+                graph.removeAllSeries();
+                series = new LineGraphSeries<>();
+
+                graph.getViewport().setXAxisBoundsManual(true);
+                graph.getViewport().setYAxisBoundsManual(true);
+
+                graph.getViewport().setMaxY(dataYValues[years-1]);
+                graph.getViewport().setMaxX(years);
+
+
                 appendData();
                 graph.addSeries(series);
             }
@@ -69,11 +73,17 @@ public class PensionCalcTwo extends Fragment {
     private void appendData() {
         for (int i = 0; i < years; i++) {
             series.appendData(new DataPoint(i, dataYValues[i]), true, years);
-            System.out.println("Test" + i + dataYValues[i]);
         }
     }
 
     public void test() {
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == updateGraph) {
+            refreshGraph();
+        }
     }
 }

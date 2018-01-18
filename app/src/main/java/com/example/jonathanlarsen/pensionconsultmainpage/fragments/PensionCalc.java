@@ -27,8 +27,8 @@ public class PensionCalc extends Fragment implements View.OnClickListener, ViewP
     private final String txtPageOneNotChosen = "Du har endnu ikke fundet din investeringsprofil. \n" +
             "Tag guiden i menuen.";
 
-    private final String txtPageTwo = "Under udvikling";
-    private final String txtPageThree = "Også under udvikling";
+    private final String txtPageTwo = "Udvikling af pensions opsparing";
+    private final String txtPageThree = "Var du tilfreds med din opsparing?";
 
     private boolean testTaken = false;
 
