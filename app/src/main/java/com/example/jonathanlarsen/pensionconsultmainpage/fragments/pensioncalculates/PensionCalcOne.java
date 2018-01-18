@@ -77,6 +77,7 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
     private void updatePage(int progress) {
         if (!TextUtils.isEmpty(start.getText().toString())) {
             if (!TextUtils.isEmpty(end.getText().toString())) {
+
                 amount.setText(progress + " kr.");
 
                 pensionCalc.setMonthlyPay(progress);
