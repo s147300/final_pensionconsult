@@ -1,10 +1,5 @@
 package com.example.jonathanlarsen.pensionconsultmainpage.fragments.pensioncalculates;
 
-/* This class does not work properly.
-For this to work, i require a refresh fragment on a viewpager,
-and
- */
-
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
