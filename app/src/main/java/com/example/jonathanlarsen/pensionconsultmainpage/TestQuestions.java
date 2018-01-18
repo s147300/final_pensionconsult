@@ -60,8 +60,9 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         bar.setMax(4);
         bar.setProgress(i);
 
-        setQuestion();
+
         setChoices();
+        setQuestion();
 
         RadioGroup rdgrp = (RadioGroup) findViewById(R.id.radioGroup3);
         rdgrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -163,9 +164,9 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         }
     }
     private void update(){
+        removeOldChoices();
         bar.setProgress(i);
         setQuestion();
-        removeOldChoices();
         setChoices();
     }
     private double sum(){ //summerer vores array med værdier, så vi kan videresende den endelig værdi til evaluering.

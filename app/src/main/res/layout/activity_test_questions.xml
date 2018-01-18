@@ -19,10 +19,10 @@
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/anullBut"
         app:layout_constraintEnd_toStartOf="@+id/nextBut"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.871" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
     <Button
@@ -61,20 +61,24 @@
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506"
+        app:layout_constraintVertical_bias="0.655"
         tools:text="Spørgsmål 1" />
 
     <RadioGroup
         android:id="@+id/radioGroup3"
         android:layout_width="325dp"
-        android:layout_height="156dp"
+        android:layout_height="160dp"
         android:layout_marginBottom="228dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:addStatesFromChildren="false"
+        android:animationCache="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_optimizationLevel="basic"
+        tools:animationCache="true">
 
     </RadioGroup>
 
@@ -84,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginTop="36dp"
         android:elevation="9dp"
         android:text="næste"
@@ -93,14 +97,14 @@
         app:layout_constraintBottom_toTopOf="@+id/anullBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.871" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="325dp"
         android:layout_height="21dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
