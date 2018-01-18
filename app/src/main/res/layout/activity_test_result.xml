@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/resultHeadline"
         android:layout_width="0dp"
-        android:layout_height="93dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Dit resultat: Høj risiko"
         android:textAlignment="center"
@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/resultText"
         android:layout_width="345dp"
-        android:layout_height="221dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="100dp"
         android:text="Forklarende tekst tekst teksttekstteksttekstteksttekstteksttekstteksttekstteksttekstteksttekstteksttekstteksttekst "
@@ -47,37 +47,39 @@
     <Button
         android:id="@+id/againButt"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="107dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Test igen"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:theme="@style/primaryButtons"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/endButt"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultText"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/endButt"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="107dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="68dp"
         android:layout_marginTop="8dp"
         android:text="AfSlut"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:theme="@style/primaryButtons"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultText"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView2"

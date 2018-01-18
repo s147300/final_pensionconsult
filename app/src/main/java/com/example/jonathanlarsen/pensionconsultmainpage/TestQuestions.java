@@ -109,6 +109,11 @@ public class TestQuestions extends AppCompatActivity implements View.OnClickList
         next.setAlpha(0.26f);
         TextView tv = (TextView) findViewById(R.id.question);
         tv.setText((questAnws[i][0])); //spørgsmålet er altid position 0 i hvert array
+        if (i > 0 ) //hvis det ikke er første spørgsmål, så bliver tilbage-knap til 'forrige'
+            back.setText("Forrige");
+        else
+            back.setText("tilbage");
+
     }
 
     private void setChoices(){ //laver radiobuttons i radioGroup, giver hver knap ID fra 0-3 alt efter hvor mange svarmuligheder spørgsmålet har.

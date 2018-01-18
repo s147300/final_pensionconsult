@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jonathanlarsen.pensionconsultmainpage.Logic.MailSender;
@@ -26,6 +28,7 @@ public class Contact extends Fragment implements View.OnClickListener {
     private Button sendButton;
     private String name, mail, subject, comment;
 
+    private TextView text;
     private EditText etName;
     private EditText etSenderMail;
     private EditText etComment;
@@ -55,11 +58,14 @@ public class Contact extends Fragment implements View.OnClickListener {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        text = view.findViewById(R.id.textView);
         etName = view.findViewById(R.id.etName);
         etSenderMail = view.findViewById(R.id.etSenderMail);
         etComment = view.findViewById(R.id.etComment);
 
 
+        text.setText(R.string.contacttext);
+        Linkify.addLinks(text, Linkify.ALL);
         startLayout();
 
 

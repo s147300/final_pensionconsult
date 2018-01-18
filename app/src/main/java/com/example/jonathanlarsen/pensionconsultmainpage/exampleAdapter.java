@@ -23,7 +23,7 @@ public class exampleAdapter extends ArrayAdapter<Example> implements ValueEventL
     public exampleAdapter(@NonNull Context context) {
         super(context, -1, new ArrayList<Example>());
 
-        DatabaseReference articleRef = FirebaseDatabase.getInstance().getReference("example");
+        DatabaseReference articleRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://pensionconsult-84ffd.firebaseio.com/example");
         articleRef.addValueEventListener(this);
     }
 

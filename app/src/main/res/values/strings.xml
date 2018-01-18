@@ -33,10 +33,11 @@
         ]]>
         </string>
 
-    <string name="FP_text">Hos PensionConsult står vi for uvildig rådgivning i junglen af forskellige pensionsselskaber. Vi skræddersyer en løsning specielt til dig, så du kan få mest mulig ro i sindet når det kommer til din pension. Et af værktøjerne vi bruger til at hjælpe dig er vores invisteringsprofil-test. Tag den herunder.</string>
+    <string name="FP_text">Hos PensionConsult står vi for uvildig rådgivning i forhold til din pension. Vi skræddersyer en pensionsløsning specielt til dig, så du kan få mest mulig ro i sindet når det kommer til din pension.\n\nEt af værktøjerne vi bruger til at hjælpe dig er vores invisteringsprofil-test, som fortæller os lidt om de værdier du går ind i din pensionsopsparing med.</string>
 
     <string name="Ok_text">Ok</string>
 
+    <string name ="contacttext">Kontakt os for et uforpligtende møde på: \n Tlf.: +45 26 11 45 58 \n  kontakt@pensionconsult.dk \n\n Eller: \n \n Bliv kontaktet</string>
     <string-array name="contact_subjects">
         <item>Uvildig Rådgivning</item>
         <item>Pension Management</item>
