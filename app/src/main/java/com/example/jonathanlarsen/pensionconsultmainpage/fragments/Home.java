@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.jonathanlarsen.pensionconsultmainpage.R;
 import com.example.jonathanlarsen.pensionconsultmainpage.TestQuestions;
 
@@ -24,7 +25,6 @@ public class Home extends Fragment implements View.OnClickListener {
     public Home() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,8 +42,10 @@ public class Home extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        Intent i = new Intent(this.getActivity(), TestQuestions.class);
-        startActivity(i);
+    public void onClick(View view) {
+        if (view == testBut) {
+            Intent i = new Intent(this.getActivity(), TestQuestions.class);
+            startActivity(i);
+        }
     }
 }
