@@ -77,19 +77,23 @@ public class PensionCalcOne extends Fragment implements SeekBar.OnSeekBarChangeL
     private void updatePage(int progress) {
         if (!TextUtils.isEmpty(start.getText().toString())) {
             if (!TextUtils.isEmpty(end.getText().toString())) {
+                int tmpStart = Integer.parseInt(start.getText().toString());
+                int tmpEnd = Integer.parseInt(end.getText().toString());
 
-                amount.setText(progress + " kr.");
+                if (tmpEnd - tmpStart > 0) {
 
-                pensionCalc.setMonthlyPay(progress);
-                pensionCalc.setPensionStart(Integer.parseInt(start.getText().toString()));
-                pensionCalc.setPensionEnd(Integer.parseInt(end.getText().toString()));
+                    amount.setText(progress + " kr.");
 
-                result.setText("" + pensionCalc.getResult());
+                    pensionCalc.setMonthlyPay(progress);
+                    pensionCalc.setPensionStart(Integer.parseInt(start.getText().toString()));
+                    pensionCalc.setPensionEnd(Integer.parseInt(end.getText().toString()));
 
-                earnedStatistics.setText("Du har betalt: " + pensionCalc.getOwnPayment() + "\n" +
-                "Din renteindtjening er: " + pensionCalc.getRentIncome() + "\n" +
-                "Beregningen er lavet på et afkast på " + (int) pensionCalc.getRent() + "% efter skat og inflation er sat til " + (int) pensionCalc.getInflation() + "%.");
+                    result.setText("" + pensionCalc.getResult());
 
+                    earnedStatistics.setText("Du har betalt: " + pensionCalc.getOwnPayment() + "\n" +
+                            "Din renteindtjening er: " + pensionCalc.getRentIncome() + "\n" +
+                            "Beregningen er lavet på et afkast på " + (int) pensionCalc.getRent() + "% efter skat og inflation er sat til " + (int) pensionCalc.getInflation() + "%.");
+                }else { end.setText(Integer.toString((tmpStart+1))); }
             }else { end.setText("65"); }
         }else { start.setText("25"); }
     }

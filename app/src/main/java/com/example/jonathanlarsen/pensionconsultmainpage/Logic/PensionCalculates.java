@@ -15,11 +15,11 @@ public class PensionCalculates {
     private int rentIncome = 0;
 
     private float laborMarket = 0.92f;
-    private float tax = 0.63f;
+    private float tax = 0.61f;
     private float inflation = 1.02f;
     private float inflationPercent = (inflation - 1.00f) * 100;
 
-    private int[] monthtlyStatus;
+    private int[] yearlyStatus;
 
     public void setPensionStart(int start) { this.pensionSavingStart = start; }
     public void setPensionEnd(int end) { this.pensionSavingEnd = end; }
@@ -29,7 +29,7 @@ public class PensionCalculates {
     public int getRentIncome() { return rentIncome; }
     public float getRent() { return  interestRate * 100; }
     public float getInflation() { return (float) Math.rint(inflationPercent); }
-    public int[] getMonthtlyStatus() { return monthtlyStatus; }
+    public int[] getYearlyStatus() { return yearlyStatus; }
     public int getYears() { return years; }
 
 
@@ -40,25 +40,30 @@ public class PensionCalculates {
 
     private void calculateResult() {
         years = pensionSavingEnd - pensionSavingStart;
-        monthtlyStatus = new int[years];
 
-        float tmpResult = 0;
-        for (int i = 0; i < years; i++) {
-            // Yearly returns
-            tmpResult = (tmpResult + monthlyPay*12) * (1+interestRate);
+        int yearlyPay = monthlyPay * 12;
 
-            // used to plot the graph
-            monthtlyStatus[i] = (int) (tmpResult * laborMarket * tax * inflation);
+        // Function created with the knowlegde of the function below
+        // B * ((1 + r)^n - 1) / r
+        int currentPay = 0;
+        yearlyStatus = new int[years];
+        for (int p = 0; p < years; p++) {
+            // add up the current pay for every year that passed
+            currentPay = currentPay + yearlyPay;
+
+            // function to calculate the total status every year.
+            double tmp = (int) ( (yearlyPay * (Math.pow(1 + interestRate, p+1) - 1)) / interestRate);
+
+            // Withdraw the current pay and calculate the rent
+            tmp = tmp - currentPay;
+            tmp = tmp * laborMarket * tax * inflation + currentPay;
+            yearlyStatus[p] = (int) tmp;
         }
 
-        tmpResult = monthtlyStatus[years-1];
-
-        // parse result to an int
-        result = (int) tmpResult;
-
-        // statistics - how much is paid and how much is earned
-        ownPayment = years * monthlyPay * 12;
-        rentIncome = result - ownPayment;
+        // save the data to the variables
+        result = yearlyStatus[years-1];
+        rentIncome = result - currentPay;
+        ownPayment = currentPay;
 
     }
 

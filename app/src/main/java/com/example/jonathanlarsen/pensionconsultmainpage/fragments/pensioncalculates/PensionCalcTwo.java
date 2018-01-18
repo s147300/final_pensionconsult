@@ -44,7 +44,7 @@ public class PensionCalcTwo extends Fragment implements View.OnClickListener {
 
     private void refreshGraph() {
         years = pensionCalc.getYears();
-        dataYValues = pensionCalc.getMonthtlyStatus();
+        dataYValues = pensionCalc.getYearlyStatus();
 
 
         if (dataYValues != null) {
@@ -66,11 +66,15 @@ public class PensionCalcTwo extends Fragment implements View.OnClickListener {
     }
 
     private void appendData() {
-        for (int i = 0; i < years; i++) {
-            series.appendData(new DataPoint(i, dataYValues[i]), true, years);
+        if (years == 1) {
+            series.appendData(new DataPoint(0, 0), true, years + 1);
+            series.appendData(new DataPoint(1, dataYValues[0]), true, years + 1);
+        } else {
+            for (int i = 0; i < years; i++) {
+                series.appendData(new DataPoint(i, dataYValues[i]), true, years);
+            }
         }
     }
-
     public void test() {
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
